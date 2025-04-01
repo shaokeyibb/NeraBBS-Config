@@ -34,19 +34,20 @@ spring:
   quartz:
     job-store-type: "jdbc"
     jdbc:
-      initialize-schema: "never"
+      initialize-schema: always
+      schema: "classpath:quartz-schema.sql"
+    overwrite-existing-jobs: true
     properties:
       org:
         quartz:
           scheduler:
-            instanceName: scheduler
             instanceId: AUTO
             classLoadHelper:
               class: org.quartz.simpl.CascadingClassLoadHelper
           jobStore:
             class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
             driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-            tablePrefix: QRTZ_
+            isClustered: true
 
   servlet:
     multipart:

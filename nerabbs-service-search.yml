@@ -1,4 +1,7 @@
 spring:
-  sql:
-    init:
-      mode: always
+  quartz:
+    properties:
+      org:
+        quartz:
+          jobStore:
+            tablePrefix: SERVICE_SEARCH_QRTZ_
