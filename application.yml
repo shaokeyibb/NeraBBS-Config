@@ -22,10 +22,17 @@ spring:
     username: nerabbs
     password: nerabbs
 
+
+  sql:
+    init:
+      mode: always
+      schema-locations: "classpath:seata-schema.sql"
+
   cache:
     type: redis
 
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
 
@@ -100,6 +107,15 @@ grpc:
     nerabbs-service-oss:
       address: "discovery:///nerabbs-service-oss"
       negotiationType: PLAINTEXT
+
+seata:
+  tx-service-group: default_tx_group
+  service:
+    vgroupMapping:
+      default_tx_group: default
+    grouplist:
+      default: seata-server:8091
+
 
 nerabbs:
   frontend:
